@@ -1,0 +1,67 @@
+package com.sportsclubmanagement.clubmanagement.services.impl;
+
+import com.sportsclubmanagement.clubmanagement.entity.Activity;
+import com.sportsclubmanagement.clubmanagement.repositories.ActivityRepository;
+import com.sportsclubmanagement.clubmanagement.services.ActivityService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class ActivityServiceImpl implements ActivityService {
+    @Autowired
+    private ActivityRepository activityRepository;
+
+    @Override
+    public Activity createActivity(Activity activity) {
+        return activityRepository.save(activity);
+    }
+
+    @Override
+    public Activity updateActivity(Long id, Activity activity) {
+        Activity existingActivity = getActivityById(id);
+        if (existingActivity == null) {
+            throw new IllegalArgumentException("Activity with ID " + id + " not found.");
+        }
+        return activityRepository.save(activity);
+    }
+
+    @Override
+    public void deleteActivity(Long id) {
+        Activity existingActivity = getActivityById(id);
+        if (existingActivity == null) {
+            throw new IllegalArgumentException("Activity with ID " + id + " not found.");
+        }
+        activityRepository.delete(existingActivity);
+    }
+
+    @Override
+    public Activity getActivityById(Long id) {
+        return activityRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Activity> getAllActivities() {
+        return activityRepository.findAll();
+    }
+
+    @Override
+    public List<Activity> getActivitiesByCoachId(long coachId) {
+        return activityRepository.getActivitiesByCoachesId(coachId);
+    }
+
+    @Override
+    public List<Activity> getActivitiesByMemberId(long memberId) {
+        return activityRepository.getActivitiesByMembersId(memberId);
+    }
+
+    @Override
+    public List<Activity> getActivitiesByEquipementId(long equipementId) {
+        return activityRepository.getActivitiesByEquipementsId(equipementId);
+    }
+
+
+
+
+}
