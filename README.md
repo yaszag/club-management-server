@@ -22,7 +22,7 @@ This is a Spring Boot application for managing sports clubs. It provides functio
 
 To run the application locally, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/your-username/club-management.git`
+1. Clone the repository: `git clone https://github.com/yaszag/club-management-server.git`
 2. Navigate to the project directory: `cd club-management`
 3. Build the project: `mvn clean install`
 4. Run the application: `mvn spring-boot:run`
