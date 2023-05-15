@@ -1,11 +1,13 @@
 package com.sportsclubmanagement.clubmanagement.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -14,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "members")
-public class Member {
+public class Member  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +31,17 @@ public class Member {
     @Column(nullable = false)
     private String phone;
 
-    @ManyToMany(mappedBy = "members")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToMany
+    @JoinTable(
+            name = "activity_member",
+            joinColumns = @JoinColumn(name = "member_id"),
+            inverseJoinColumns = @JoinColumn(name = "activity_id")
+    )
     private List<Activity> activities;
+
+    @ManyToOne
+    @JoinColumn(name = "subscription_id")
+    private Subscription subscription;
 
 }

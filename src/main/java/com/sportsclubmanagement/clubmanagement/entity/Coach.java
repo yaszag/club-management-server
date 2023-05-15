@@ -31,7 +31,7 @@ public class Coach {
     @Column(nullable = false)
     private String phone;
 
-    @ManyToMany(mappedBy = "coaches")
+    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "coaches")
     private List<Activity> activities;
 
 }

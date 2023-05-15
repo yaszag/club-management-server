@@ -1,10 +1,12 @@
 package com.sportsclubmanagement.clubmanagement.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -13,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "activities")
-public class Activity {
+public class Activity  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +29,6 @@ public class Activity {
 
     @Column(nullable = false)
     private BigDecimal price;
-    // Additional activity properties
 
     @ManyToMany
     @JoinTable(
@@ -37,7 +38,7 @@ public class Activity {
     )
     private List<Coach> coaches;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "activity_equipement",
             joinColumns = @JoinColumn(name = "activity_id"),
@@ -45,12 +46,6 @@ public class Activity {
     )
     private List<Equipement> equipements;
 
-    @ManyToMany
-    @JoinTable(
-            name = "activity_member",
-            joinColumns = @JoinColumn(name = "activity_id"),
-            inverseJoinColumns = @JoinColumn(name = "member_id")
-    )
-    private List<Member> members;
+
 
 }

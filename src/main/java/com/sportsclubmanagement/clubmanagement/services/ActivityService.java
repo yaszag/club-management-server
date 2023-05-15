@@ -12,6 +12,8 @@ public interface ActivityService {
     Activity getActivityById(Long id);
     List<Activity> getAllActivities();
     List<Activity> getActivitiesByCoachId(long coachId);
-    List<Activity> getActivitiesByMemberId(long memberId);
     List<Activity> getActivitiesByEquipementId(long equipementId);
+    List<Activity> getActivitiesByIds(List<Long> activityIds);
+
+
 }

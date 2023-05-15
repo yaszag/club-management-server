@@ -1,7 +1,12 @@
 package com.sportsclubmanagement.clubmanagement.controllers;
 
+import com.sportsclubmanagement.clubmanagement.entity.Activity;
+import com.sportsclubmanagement.clubmanagement.entity.DTO.AddMemberDTO;
 import com.sportsclubmanagement.clubmanagement.entity.Member;
+import com.sportsclubmanagement.clubmanagement.entity.Subscription;
+import com.sportsclubmanagement.clubmanagement.services.ActivityService;
 import com.sportsclubmanagement.clubmanagement.services.MemberService;
+import com.sportsclubmanagement.clubmanagement.services.SubscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,8 +17,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/members")
 public class MemberController {
+
     @Autowired
     private MemberService memberService;
+
+    @Autowired
+    private ActivityService activityService;
+
+    @Autowired
+    private SubscriptionService subscriptionService;
+
+
 
     // Endpoint for retrieving all members
     @GetMapping
@@ -34,7 +48,16 @@ public class MemberController {
 
     // Endpoint for creating a new member
     @PostMapping
-    public ResponseEntity<Member> createMember(@RequestBody Member member) {
+    public ResponseEntity<Member> createMember(@RequestBody AddMemberDTO addMemberDTO) {
+        List<Activity> activities = activityService.getActivitiesByIds(addMemberDTO.getActivityIds());
+        Subscription subscription = subscriptionService.getSubscriptionById(addMemberDTO.getSubscriptionId());
+        Member member = new Member();
+        member.setName(addMemberDTO.getName());
+        member.setEmail(addMemberDTO.getEmail());
+        member.setPhone(addMemberDTO.getPhone());
+        member.setActivities(activities);
+        member.setSubscription(subscription);
+
         Member createdMember = memberService.createMember(member);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdMember);
     }

@@ -51,17 +51,18 @@ public class ActivityServiceImpl implements ActivityService {
         return activityRepository.getActivitiesByCoachesId(coachId);
     }
 
-    @Override
-    public List<Activity> getActivitiesByMemberId(long memberId) {
-        return activityRepository.getActivitiesByMembersId(memberId);
-    }
+
 
     @Override
     public List<Activity> getActivitiesByEquipementId(long equipementId) {
         return activityRepository.getActivitiesByEquipementsId(equipementId);
     }
 
+    @Override
+    public List<Activity> getActivitiesByIds(List<Long> activityIds) {
+            return activityRepository.findAllById(activityIds);
 
+    }
 
 
 }
