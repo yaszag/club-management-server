@@ -5,25 +5,24 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.math.BigDecimal;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 @Entity
-@Table(name = "subscriptions")
-public class Subscription {
+public class SubscriptionDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private LocalDate startDate;
+    private BigDecimal price;
 
     @Column(nullable = false)
-    private LocalDate endDate;
+    private String designation;
 
-    @OneToOne
-    private SubscriptionDetails subscriptionDetails;
+    @Column(nullable = false)
+    private String description;
 }

@@ -3,9 +3,11 @@ package com.sportsclubmanagement.clubmanagement.services;
 import com.sportsclubmanagement.clubmanagement.entity.Activity;
 import com.sportsclubmanagement.clubmanagement.entity.Member;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 public interface MemberService {
+    @Transactional
     Member createMember(Member member);
     Member updateMember(Long id, Member member);
     void deleteMember(Long id);

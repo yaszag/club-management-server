@@ -40,7 +40,7 @@ public class Member  {
     )
     private List<Activity> activities;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "subscription_id")
     private Subscription subscription;
 

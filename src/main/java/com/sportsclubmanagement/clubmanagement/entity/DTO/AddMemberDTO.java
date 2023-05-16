@@ -1,5 +1,6 @@
 package com.sportsclubmanagement.clubmanagement.entity.DTO;
 
+import com.sportsclubmanagement.clubmanagement.entity.Subscription;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,7 @@ public class AddMemberDTO {
     private String name;
     private String email;
     private String phone;
-    private Long subscriptionId;
+    private SubscriptionDTO subscriptionDTO;
     private List<Long> activityIds;
 
 }

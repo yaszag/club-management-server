@@ -1,43 +1,40 @@
 package com.sportsclubmanagement.clubmanagement.seeder;
 
 
-import com.sportsclubmanagement.clubmanagement.entity.Subscription;
-import com.sportsclubmanagement.clubmanagement.repositories.SubscriptionRepository;
+import com.sportsclubmanagement.clubmanagement.entity.SubscriptionDetails;
+import com.sportsclubmanagement.clubmanagement.repositories.SubscriptionDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class DbSeeder implements CommandLineRunner {
 
-    private final SubscriptionRepository subscriptionRepository;
+    private final SubscriptionDetailsRepository subscriptionDetailsRepository;
 
     @Autowired
-    public DbSeeder(SubscriptionRepository subscriptionRepository) {
-        this.subscriptionRepository = subscriptionRepository;
+    public DbSeeder(SubscriptionDetailsRepository subscriptionDetailsRepository) {
+        this.subscriptionDetailsRepository = subscriptionDetailsRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
-        List<Subscription> subscriptions = createSubscriptions();
-
-        subscriptionRepository.saveAll(subscriptions);
+        subscriptionDetailsRepository.saveAll(createSubscriptionsDetails());
     }
 
-    private List<Subscription> createSubscriptions() {
-        List<Subscription> subscriptions = new ArrayList<>();
+    private List<SubscriptionDetails> createSubscriptionsDetails() {
 
-        subscriptions.add(new Subscription((long) 1,BigDecimal.valueOf(100), LocalDate.now(), LocalDate.now().plusMonths(1), "Monthly", "Access to club facilities for 1 month",null));
-        subscriptions.add(new Subscription((long) 2,BigDecimal.valueOf(250), LocalDate.now(), LocalDate.now().plusMonths(3), "Quarterly", "Access to club facilities for 3 months",null));
-        subscriptions.add(new Subscription((long) 3,BigDecimal.valueOf(500), LocalDate.now(), LocalDate.now().plusMonths(6), "Semi-Annual", "Access to club facilities for 6 months",null));
-        subscriptions.add(new Subscription((long) 4,BigDecimal.valueOf(900), LocalDate.now(), LocalDate.now().plusYears(1), "Yearly", "Access to club facilities for 1 year",null));
+        List<SubscriptionDetails> subscriptionDetails = new ArrayList<>();
+        subscriptionDetails.add(new SubscriptionDetails(1L, BigDecimal.valueOf(100), "Monthly", "Access to club facilities for 1 month"));
+        subscriptionDetails.add(new SubscriptionDetails(2L, BigDecimal.valueOf(250), "Quarterly", "Access to club facilities for 3 months"));
+        subscriptionDetails.add(new SubscriptionDetails(3L, BigDecimal.valueOf(500), "Semi-Annual", "Access to club facilities for 6 months"));
+        subscriptionDetails.add(new SubscriptionDetails(4L, BigDecimal.valueOf(900), "Yearly", "Access to club facilities for 1 year"));
 
-        return subscriptions;
+        return subscriptionDetails;
     }
 }
 
