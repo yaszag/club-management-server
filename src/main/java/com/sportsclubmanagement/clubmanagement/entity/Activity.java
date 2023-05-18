@@ -30,13 +30,7 @@ public class Activity  {
     @Column(nullable = false)
     private BigDecimal price;
 
-    @ManyToMany
-    @JoinTable(
-            name = "activity_coach",
-            joinColumns = @JoinColumn(name = "activity_id"),
-            inverseJoinColumns = @JoinColumn(name = "coach_id")
-    )
-    private List<Coach> coaches;
+
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(

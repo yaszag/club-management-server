@@ -1,6 +1,5 @@
 package com.sportsclubmanagement.clubmanagement.controllers;
 
-import com.sportsclubmanagement.clubmanagement.entity.Subscription;
 import com.sportsclubmanagement.clubmanagement.entity.SubscriptionDetails;
 import com.sportsclubmanagement.clubmanagement.services.SubscriptionDetailsServise;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "members")
-public class Member  {
+public class Member extends GenericEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +32,7 @@ public class Member  {
     private String phone;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable(
             name = "activity_member",
             joinColumns = @JoinColumn(name = "member_id"),

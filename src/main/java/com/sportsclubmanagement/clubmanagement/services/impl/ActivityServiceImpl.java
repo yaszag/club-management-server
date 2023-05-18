@@ -47,13 +47,6 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     @Override
-    public List<Activity> getActivitiesByCoachId(long coachId) {
-        return activityRepository.getActivitiesByCoachesId(coachId);
-    }
-
-
-
-    @Override
     public List<Activity> getActivitiesByEquipementId(long equipementId) {
         return activityRepository.getActivitiesByEquipementsId(equipementId);
     }

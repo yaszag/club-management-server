@@ -11,6 +11,5 @@ import java.util.List;
 
 @Repository
 public interface ActivityRepository extends JpaRepository<Activity, Long> {
-    List<Activity> getActivitiesByCoachesId(long coachId);
     List<Activity> getActivitiesByEquipementsId(long equipementId);
 }

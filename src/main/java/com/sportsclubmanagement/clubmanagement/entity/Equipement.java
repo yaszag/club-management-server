@@ -27,7 +27,6 @@ public class Equipement {
     @Column(nullable = false)
     private int quantity;
 
-    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "equipements")
-    private List<Activity> activities;
+
 
 }
