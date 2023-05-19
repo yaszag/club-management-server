@@ -80,11 +80,12 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void deleteMember(Long id) {
-        Member existingMember = getMemberById(id);
-        if (existingMember == null) {
-            throw new IllegalArgumentException("Member with ID " + id + " not found.");
-        }
-        memberRepository.delete(existingMember);
+        Optional<Member> existingMember = memberRepository.findById(id);
+        if (existingMember.isPresent()) {
+
+            memberRepository.delete(existingMember.get());
+        } else
+            throw new NotFoundException("Member with ID " + id + " not found.");
     }
 
     @Override

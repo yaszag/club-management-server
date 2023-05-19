@@ -32,7 +32,7 @@ public class Member extends GenericEntity {
     private String phone;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
     @JoinTable(
             name = "activity_member",
             joinColumns = @JoinColumn(name = "member_id"),
