@@ -20,11 +20,14 @@ public class ActivityServiceImpl implements ActivityService {
 
     @Override
     public Activity updateActivity(Long id, Activity activity) {
-        Activity existingActivity = getActivityById(id);
-        if (existingActivity == null) {
+        if (activityRepository.findById(id).isPresent()) {
+            activity.setId(id);
+            return activityRepository.save(activity);
+        }else {
             throw new IllegalArgumentException("Activity with ID " + id + " not found.");
+
         }
-        return activityRepository.save(activity);
+
     }
 
     @Override
@@ -47,21 +50,15 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     @Override
-    public List<Activity> getActivitiesByCoachId(long coachId) {
-        return activityRepository.getActivitiesByCoachesId(coachId);
-    }
-
-    @Override
-    public List<Activity> getActivitiesByMemberId(long memberId) {
-        return activityRepository.getActivitiesByMembersId(memberId);
-    }
-
-    @Override
     public List<Activity> getActivitiesByEquipementId(long equipementId) {
         return activityRepository.getActivitiesByEquipementsId(equipementId);
     }
 
+    @Override
+    public List<Activity> getActivitiesByIds(List<Long> activityIds) {
+            return activityRepository.findAllById(activityIds);
 
+    }
 
 
 }

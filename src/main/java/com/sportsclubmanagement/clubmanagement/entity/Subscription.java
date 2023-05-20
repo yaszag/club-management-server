@@ -5,28 +5,25 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "equipements")
-public class Equipement {
+@Table(name = "subscriptions")
+public class Subscription {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private LocalDate startDate;
 
     @Column(nullable = false)
-    private String description;
+    private LocalDate endDate;
 
-    @Column(nullable = false)
-    private int quantity;
-
-
-
+    @OneToOne
+    private SubscriptionDetails subscriptionDetails;
 }

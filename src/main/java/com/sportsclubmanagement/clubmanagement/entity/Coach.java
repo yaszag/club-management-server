@@ -1,6 +1,7 @@
 package com.sportsclubmanagement.clubmanagement.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,7 +32,13 @@ public class Coach {
     @Column(nullable = false)
     private String phone;
 
-    @ManyToMany(mappedBy = "coaches")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "activity_coach",
+            joinColumns = @JoinColumn(name = "coach_id"),
+            inverseJoinColumns = @JoinColumn(name = "activity_id")
+    )
     private List<Activity> activities;
 
 }

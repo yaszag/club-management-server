@@ -5,28 +5,24 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
+import java.math.BigDecimal;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 @Entity
-@Table(name = "equipements")
-public class Equipement {
+public class SubscriptionDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private BigDecimal price;
+
+    @Column(nullable = false)
+    private String designation;
 
     @Column(nullable = false)
     private String description;
-
-    @Column(nullable = false)
-    private int quantity;
-
-
-
 }

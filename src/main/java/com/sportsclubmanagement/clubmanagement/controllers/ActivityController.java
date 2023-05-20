@@ -61,18 +61,14 @@ public class ActivityController {
 
 
     // Endpoint for retrieving activities by coach ID
-    @ApiOperation(value = "Get Activities By Coach Id")
-    @GetMapping("/by-coach/{coachId}")
-    public List<Activity> getActivitiesByCoachId(@PathVariable Long coachId) {
-        return activityService.getActivitiesByCoachId(coachId);
-    }
+
 
     // Endpoint for retrieving activities by member ID
-    @ApiOperation(value = "Get Member By Coach Id")
-    @GetMapping("/by-member/{memberId}")
-    public List<Activity> getActivitiesByMemberId(@PathVariable Long memberId) {
-        return activityService.getActivitiesByMemberId(memberId);
-    }
+    // @ApiOperation(value = "Get Member By Coach Id")
+    //@GetMapping("/by-member/{memberId}")
+    //public List<Activity> getActivitiesByMemberId(@PathVariable Long memberId) {
+    //  return activityService.getActivitiesByMemberId(memberId);
+    //}
 
     // Endpoint for retrieving activities by equipment ID
     @ApiOperation(value = "Get Activities By Equipment Id")
