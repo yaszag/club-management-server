@@ -43,7 +43,7 @@ public class Activity  {
     private List<Member> members;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(
             name = "activity_coach",
             joinColumns = @JoinColumn(name = "activity_id"),

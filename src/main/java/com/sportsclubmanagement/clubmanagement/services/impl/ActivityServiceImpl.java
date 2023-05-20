@@ -20,11 +20,14 @@ public class ActivityServiceImpl implements ActivityService {
 
     @Override
     public Activity updateActivity(Long id, Activity activity) {
-        Activity existingActivity = getActivityById(id);
-        if (existingActivity == null) {
+        if (activityRepository.findById(id).isPresent()) {
+            activity.setId(id);
+            return activityRepository.save(activity);
+        }else {
             throw new IllegalArgumentException("Activity with ID " + id + " not found.");
+
         }
-        return activityRepository.save(activity);
+
     }
 
     @Override
